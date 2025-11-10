@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface UmkCloakroomFacade {
 
+    Deposit getDeposit(Integer depositId);
     Deposit depositItems(Student student, List<Item> items);
 
     void collectDeposit(Integer depositId);

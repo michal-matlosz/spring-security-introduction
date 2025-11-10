@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.umk.workshop.springintroduction.controller.models.DepositDto;
 import pl.umk.workshop.springintroduction.controller.models.DepositIdDto;
+import pl.umk.workshop.springintroduction.controller.models.DepositWithIdDto;
 import pl.umk.workshop.springintroduction.controller.models.StudentDto;
 import pl.umk.workshop.springintroduction.domain.UmkCloakroomFacade;
+import pl.umk.workshop.springintroduction.domain.models.Deposit;
 import pl.umk.workshop.springintroduction.domain.models.Item;
 import pl.umk.workshop.springintroduction.domain.models.Student;
 
@@ -24,6 +26,21 @@ public class UmkCloakroomEndpoint {
         this.umkCloakroomFacade = umkCloakroomFacade;
     }
 
+    /*
+    Use this command to get deposit by id
+
+    curl --location --request GET 'http://localhost:8122/deposit/1'
+    */
+
+    @GetMapping("/{depositId}")
+    public DepositWithIdDto getDepositById(@PathVariable() Integer depositId) {
+        Deposit deposit = umkCloakroomFacade.getDeposit(depositId);
+        return new DepositWithIdDto(
+                deposit.depositId(),
+                new StudentDto(deposit.student().name(), deposit.student().surname()),
+                deposit.items().stream().map(Enum::name).toList()
+        );
+    }
 
     /*
     Use this command to add some items to cloakroom
@@ -49,6 +66,7 @@ public class UmkCloakroomEndpoint {
 
         return new DepositIdDto(deposit.depositId().toString());
     }
+
     /*
     Use this command to collect some items from cloakroom (1 is an example id of deposit)
 

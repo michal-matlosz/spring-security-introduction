@@ -26,6 +26,11 @@ public class UmkCloakroomFacadeImpl implements UmkCloakroomFacade {
     }
 
     @Override
+    public Deposit getDeposit(Integer depositId) {
+        return umkCloakroomRepository.findById(depositId);
+    }
+
+    @Override
     public Deposit depositItems(Student student, List<Item> items) {
         logger.info("Depositing items {} for student {}", items, student);
         var deposit = new Deposit(depositNumberManager.getNextFreeNumber(), student, items);
