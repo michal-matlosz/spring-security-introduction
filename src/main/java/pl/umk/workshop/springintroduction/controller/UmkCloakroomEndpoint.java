@@ -32,9 +32,9 @@ public class UmkCloakroomEndpoint {
     curl --location --request GET 'http://localhost:8122/deposit/1'
     */
 
-    @GetMapping("/{depositId}")
-    public DepositWithIdDto getDepositById(@PathVariable() Integer depositId) {
-        Deposit deposit = umkCloakroomFacade.getDeposit(depositId);
+    @GetMapping("/{id}")
+    public DepositWithIdDto getDepositById(@PathVariable() String  id) {
+        Deposit deposit = umkCloakroomFacade.getDeposit(Integer.parseInt(id));
         return new DepositWithIdDto(
                 deposit.depositId(),
                 new StudentDto(deposit.student().name(), deposit.student().surname()),
