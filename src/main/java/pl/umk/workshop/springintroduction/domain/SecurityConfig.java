@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class WebSecurityConfig {
+public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize ->
@@ -38,8 +38,4 @@ public class WebSecurityConfig {
 
         return new InMemoryUserDetailsManager(userDetails);
     }
-
-
-
-
 }

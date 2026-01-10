@@ -70,7 +70,7 @@ public class UmkCloakroomEndpoint {
     /*
     Use this command to collect some items from cloakroom (1 is an example id of deposit)
 
-    curl --location --request DELETE 'http://localhost:8122/deposit/1'
+    curl -H "Authorization: Basic dXNlcjpwYXNzd29yZA==" -X DELETE 'http://localhost:8122/deposit/1' -v
      */
     @DeleteMapping
     @RequestMapping("/{id}")
