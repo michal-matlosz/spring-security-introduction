@@ -16,6 +16,7 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(authorize ->
                 authorize
                         .requestMatchers(HttpMethod.GET, "/deposit/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/deposit").permitAll()
                         .anyRequest().authenticated()
         );
         http.csrf(csrf -> csrf.disable());
