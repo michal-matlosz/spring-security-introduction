@@ -30,6 +30,12 @@ class SpringSecurityTest {
     }
 
     @Test
+    void shouldReturn403() throws Exception {
+        mockMvc.perform(delete("/deposit/1"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
     // TIP WithMockUser annotation to mock authenticated user
     void shouldReturn200WhenValidAuthenticationProvided() throws Exception {
         mockMvc.perform(delete("/deposit/1"))
