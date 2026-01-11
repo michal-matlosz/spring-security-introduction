@@ -1,6 +1,7 @@
 package pl.umk.workshop.springintroduction.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.umk.workshop.springintroduction.controller.models.DepositDto;
 import pl.umk.workshop.springintroduction.controller.models.DepositIdDto;
@@ -74,6 +75,7 @@ public class UmkCloakroomEndpoint {
      */
     @DeleteMapping
     @RequestMapping("/{id}")
+    @PreAuthorize("hasRole('CAN_DELETE')")
     public void collectItems(@PathVariable String id) {
         umkCloakroomFacade.collectDeposit(Integer.parseInt(id));
     }
