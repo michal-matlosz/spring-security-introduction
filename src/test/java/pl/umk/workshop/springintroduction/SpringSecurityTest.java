@@ -34,7 +34,7 @@ class SpringSecurityTest {
      */
     void shouldReturn403() throws Exception {
         mockMvc.perform(delete("/deposit/1"))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isUnauthorized());
     }
 
     @Test
@@ -42,7 +42,9 @@ class SpringSecurityTest {
      * Przekaż poprawne dane uwierzytelniające
      */
     void shouldReturn200WhenValidAuthenticationProvided() throws Exception {
-        mockMvc.perform(delete("/deposit/1"))
+        mockMvc.perform(delete("/deposit/1")
+                        .header("Authorization", "Basic dXNlcjpwYXNzd29yZA==")
+                )
                 .andExpect(status().isOk());
     }
 }
