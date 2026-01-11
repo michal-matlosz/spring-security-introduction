@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+</head>
+<body>
+<h1>Witaj na stronie głównej!</h1>
+<p>Jesteś zalogowany.</p>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Wyloguj</button>
+</form>
+</body>
+</html>
