@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -25,5 +27,24 @@ class SpringSecurityTest {
                         .header("Authorization", "Basic dXNlcjpwYXNzd29yZA==")
                 )
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldReturn200WhenValidCredentialsProvidedToLogin() throws Exception {
+        mockMvc.perform(post("/login")
+                        .param("username", "user")
+                        .param("password", "password")
+                )
+                .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    void shouldReturn401WhenInvalidCredentialsProvidedToLogin() throws Exception {
+        mockMvc.perform(post("/login")
+                        .param("username", "user")
+                        .param("password", "wrongpassword")
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login?error"));
     }
 }
