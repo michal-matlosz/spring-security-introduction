@@ -28,6 +28,7 @@ public class WebSecurityConfig {
         );
         http.httpBasic(Customizer.withDefaults());
         http.csrf(csrf -> csrf.disable());
+        http.formLogin(Customizer.withDefaults());
         return http.build();
     }
 
