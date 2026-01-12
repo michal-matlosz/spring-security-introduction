@@ -20,7 +20,7 @@ class SpringSecurityTest {
      * TIP: sprawdź dostępne metody wywołane na anyRequest(), jedna z nich zezwala na dostęp do /deposit/ bez autoryzacji
      */
     @Test
-    void shouldReturn200WhenUserAuthenticated() throws Exception {
+    void shouldReturn200WhenUserNotAuthenticated() throws Exception {
         mockMvc.perform(delete("/deposit/1"))
                 .andExpect(status().isOk());
     }
