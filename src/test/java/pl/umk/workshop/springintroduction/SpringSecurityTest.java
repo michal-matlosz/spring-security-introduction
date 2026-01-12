@@ -19,7 +19,7 @@ class SpringSecurityTest {
     private MockMvc mockMvc;
 
     @Test
-    void shouldReturn200WhenValidAuthenticationProvided() throws Exception {
+    void shouldReturn200WhenUserAuthenticated() throws Exception {
         mockMvc.perform(delete("/deposit/1"))
                 .andExpect(status().isOk());
     }
