@@ -75,7 +75,7 @@ public class UmkCloakroomEndpoint {
      */
     @DeleteMapping
     @RequestMapping("/{id}")
-    @PreAuthorize("hasRole('CAN_DELETE')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void collectItems(@PathVariable String id) {
         umkCloakroomFacade.collectDeposit(Integer.parseInt(id));
     }
