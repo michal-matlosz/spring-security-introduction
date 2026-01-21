@@ -41,4 +41,7 @@ class SpringSecurityTest {
         mockMvc.perform(delete("/deposit/1"))
                 .andExpect(status().isOk());
     }
+
+    // Zadanie 3 - napisz test sprawdzający status 401 dla DELETE /deposit. Dokonaj odpowiedniej zmiany w konfiguracji
+
 }
